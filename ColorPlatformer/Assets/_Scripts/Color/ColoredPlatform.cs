@@ -25,12 +25,13 @@ public class ColoredPlatform : MonoBehaviour {
 
 	void UpdatePlatformColor()
 	{
-		var components = GetComponentsInChildren<Renderer> ();
+		//var components = GetComponentsInChildren<Renderer> ();
 		var targetColor = MoodManager.GetColorForMood (mood);
-		foreach(Renderer r in GetComponentsInChildren<Renderer>())
-		{
-			LeanTween.color (r.gameObject, targetColor, 0.5f);
-		}
+		// foreach(Renderer r in GetComponentsInChildren<Renderer>())
+		// {
+		// 	LeanTween.color (r.gameObject, targetColor, 0.5f);
+		// }
+		LeanTween.color(GetComponent<Renderer>().gameObject, targetColor , 0.5f);//??
 	}
 
 
