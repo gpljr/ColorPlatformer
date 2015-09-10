@@ -40,6 +40,7 @@ public class MoodManager : MonoBehaviour {
         foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
             r.material.color = MoodManager.GetColorForMood(mood);
         }
+        transform.localScale = new Vector3(100, 100, 1);
     }
 	
     void UpdateBackgroundColor () {
@@ -55,23 +56,36 @@ public class MoodManager : MonoBehaviour {
             if (mood == Mood.Angry) {
                 c.gameObject.layer = 10;
             } else {
-                c.gameObject.layer = 0;
+                if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
+                    c.gameObject.layer = 9;
+                } else {
+                    c.gameObject.layer = 0;
+                }
             }
         }
         foreach (Collider2D c in happyColliders) {
-            c.isTrigger = (mood == Mood.Happy);
-            if (mood == Mood.Angry) {
+            //c.isTrigger = (mood == Mood.Happy);
+            if (mood == Mood.Happy) {
                 c.gameObject.layer = 10;
             } else {
-                c.gameObject.layer = 0;
+                
+                if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
+                    c.gameObject.layer = 9;
+                } else {
+                    c.gameObject.layer = 0;
+                }
             }
         }
         foreach (Collider2D c in regretfulColliders) {
-            c.isTrigger = (mood == Mood.Regretful);
-            if (mood == Mood.Angry) {
+            //c.isTrigger = (mood == Mood.Regretful);
+            if (mood == Mood.Regretful) {
                 c.gameObject.layer = 10;
             } else {
-                c.gameObject.layer = 0;
+                if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
+                    c.gameObject.layer = 9;
+                } else {
+                    c.gameObject.layer = 0;
+                }
             }
         }
     }
