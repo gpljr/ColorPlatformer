@@ -12,6 +12,9 @@ public class MoodManager : MonoBehaviour {
         Regretful}
 
     ;
+    // [SerializeField] Color colorForAngry=new Color(0.8f, 0.3f, 0.2f);
+    // [SerializeField] Color colorForHappy=new Color(0.2f, 0.8f, 0.2f);
+    // [SerializeField] Color colorForRegretful=new Color(0.2f, 0.2f, 0.8f);
 
     [SerializeField]
     private Mood _mood;

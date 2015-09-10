@@ -33,6 +33,10 @@ public class ColoredPlatform : MonoBehaviour {
 		// }
 		LeanTween.color(GetComponent<Renderer>().gameObject, targetColor , 0.5f);//??
 	}
+	void OnDrawGizmos(){
+		Gizmos.color=MoodManager.GetColorForMood(_mood);
+		Gizmos.DrawCube(transform.position,transform.localScale);
+	}
 
 
 }
