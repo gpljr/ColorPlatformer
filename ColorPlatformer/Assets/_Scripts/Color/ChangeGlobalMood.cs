@@ -27,5 +27,8 @@ public class ChangeGlobalMood : MonoBehaviour {
 			}
 		}
 	}
-	
+	void OnDrawGizmos(){
+		Gizmos.color=MoodManager.GetColorForMood(newMood);
+		Gizmos.DrawSphere(transform.position, 0.6f);
+	}
 }
