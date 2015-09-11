@@ -43,13 +43,13 @@ public class MoodManager : MonoBehaviour {
         UpdateColoredPlatforms();
 
         foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
-            r.material.color = Color.Lerp(MoodManager.GetColorForMood(mood), Color.white, 0.04f);
+            r.material.color = Color.Lerp(MoodManager.GetColorForMood(mood), Color.white, 0f);
         }
         transform.localScale = new Vector3(100, 100, 1);
     }
 	
     void UpdateBackgroundColor () {
-        var targetColor = Color.Lerp(MoodManager.GetColorForMood(mood), Color.white, 0.04f);
+        var targetColor = Color.Lerp(MoodManager.GetColorForMood(mood), Color.white, 0f);
         foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
             LeanTween.color(r.gameObject, targetColor, 0.5f);
         }

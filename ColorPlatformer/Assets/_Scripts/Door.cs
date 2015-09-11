@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 	[SerializeField] Transform doorOut;
+	[SerializeField] AudioClip audio;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,7 +18,7 @@ public class Door : MonoBehaviour {
 		{//enable
 			//print("enter door");
 			other.transform.position=doorOut.position;
-
+			AudioSource.PlayClipAtPoint(audio, transform.position);
 		}else{//disable
 			
 		}

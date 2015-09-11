@@ -6,6 +6,7 @@ public class SwitchTrigger : MonoBehaviour {
     [SerializeField] GameObject movingObject;
     MovingPlatform movingPlatform;
     [SerializeField] GameObject tutorialText;
+    [SerializeField] AudioClip audio;
     // Use this for initialization
     void Start () {
 		 movingPlatform=movingObject.GetComponent<MovingPlatform>();
@@ -49,7 +50,7 @@ public class SwitchTrigger : MonoBehaviour {
 	
     void PullTrigger () {
         if (Input.GetKeyDown(KeyCode.Space)) {
-        	
+        	AudioSource.PlayClipAtPoint(audio, transform.position);
             if (transform.eulerAngles != new Vector3(0f, 0f, 120f)) {
                 transform.eulerAngles = new Vector3(0f, 0f, 120f);
             } else {
