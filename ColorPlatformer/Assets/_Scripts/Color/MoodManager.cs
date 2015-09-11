@@ -25,7 +25,7 @@ public class MoodManager : MonoBehaviour {
         set {
             _mood = value;
             UpdateBackgroundColor();
-            UpdateColliders();
+            UpdateColoredPlatforms();
         }
     }
 
@@ -38,7 +38,7 @@ public class MoodManager : MonoBehaviour {
         happyColliders = coloredPlatforms.Where((p) => p.mood == Mood.Happy).SelectMany((p) => p.GetComponentsInChildren<Collider2D>()).ToArray();
         regretfulColliders = coloredPlatforms.Where((p) => p.mood == Mood.Regretful).SelectMany((p) => p.GetComponentsInChildren<Collider2D>()).ToArray();
 
-        UpdateColliders();
+        UpdateColoredPlatforms();
 
         foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
             r.material.color = MoodManager.GetColorForMood(mood);
@@ -52,46 +52,72 @@ public class MoodManager : MonoBehaviour {
             LeanTween.color(r.gameObject, targetColor, 0.5f);
         }
     }
-
-    private void UpdateColliders () {
+    void UpdateColoredPlatforms(){
         foreach (Collider2D c in angryColliders) {
-            //c.isTrigger = (mood == Mood.Angry);
             if (mood == Mood.Angry) {
-                c.gameObject.layer = 10;
-            } else {
-                if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
-                    c.gameObject.layer = 9;
-                } else {
-                    c.gameObject.layer = 0;
-                }
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=false;
+            }
+            else{
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=true;
             }
         }
         foreach (Collider2D c in happyColliders) {
-            //c.isTrigger = (mood == Mood.Happy);
             if (mood == Mood.Happy) {
-                c.gameObject.layer = 10;
-            } else {
-                
-                if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
-                    c.gameObject.layer = 9;
-                } else {
-                    c.gameObject.layer = 0;
-                }
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=false;
+            }
+            else{
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=true;
             }
         }
         foreach (Collider2D c in regretfulColliders) {
-            //c.isTrigger = (mood == Mood.Regretful);
             if (mood == Mood.Regretful) {
-                c.gameObject.layer = 10;
-            } else {
-                if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
-                    c.gameObject.layer = 9;
-                } else {
-                    c.gameObject.layer = 0;
-                }
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=false;
+            }
+            else{
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=true;
             }
         }
     }
+
+    // private void UpdateColliders () {
+    //     foreach (Collider2D c in angryColliders) {
+    //         //c.isTrigger = (mood == Mood.Angry);
+    //         if (mood == Mood.Angry) {
+    //             c.gameObject.layer = 10;
+    //         } else {
+    //             if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
+    //                 c.gameObject.layer = 9;
+    //             } else {
+    //                 c.gameObject.layer = 0;
+    //             }
+    //         }
+    //     }
+    //     foreach (Collider2D c in happyColliders) {
+    //         //c.isTrigger = (mood == Mood.Happy);
+    //         if (mood == Mood.Happy) {
+    //             c.gameObject.layer = 10;
+    //         } else {
+                
+    //             if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
+    //                 c.gameObject.layer = 9;
+    //             } else {
+    //                 c.gameObject.layer = 0;
+    //             }
+    //         }
+    //     }
+    //     foreach (Collider2D c in regretfulColliders) {
+    //         //c.isTrigger = (mood == Mood.Regretful);
+    //         if (mood == Mood.Regretful) {
+    //             c.gameObject.layer = 10;
+    //         } else {
+    //             if (c.gameObject.GetComponent<EdgeCollider2D>() != null) {
+    //                 c.gameObject.layer = 9;
+    //             } else {
+    //                 c.gameObject.layer = 0;
+    //             }
+    //         }
+    //     }
+    // }
 
     public static Color GetColorForMood (Mood mood) {
         switch (mood) {

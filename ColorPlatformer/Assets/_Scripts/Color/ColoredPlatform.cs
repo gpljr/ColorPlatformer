@@ -14,6 +14,7 @@ public class ColoredPlatform : MonoBehaviour {
 			UpdatePlatformColor();
 		}
 	}
+	public bool ObjectEnabled;
 
 	// Use this for initialization
 	void Start () {
@@ -34,9 +35,10 @@ public class ColoredPlatform : MonoBehaviour {
 		LeanTween.color(GetComponent<Renderer>().gameObject, targetColor , 0.5f);//??
 	}
 	void OnDrawGizmos(){
-		Gizmos.color=MoodManager.GetColorForMood(_mood);
+		Gizmos.color=MoodManager.GetColorForMood(mood);
 		Gizmos.DrawCube(transform.position,transform.localScale);
 	}
+	
 
 
 }
