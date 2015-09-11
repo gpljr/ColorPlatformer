@@ -5,6 +5,7 @@ public class SwitchTrigger : MonoBehaviour {
     public bool isTriggered;
     [SerializeField] GameObject movingObject;
     MovingPlatform movingPlatform;
+    [SerializeField] GameObject tutorialText;
     // Use this for initialization
     void Start () {
 		 movingPlatform=movingObject.GetComponent<MovingPlatform>();
@@ -28,6 +29,7 @@ public class SwitchTrigger : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D other) {
         if (gameObject.GetComponent<ColoredPlatform>().ObjectEnabled) {//enable
            	transform.position+=new Vector3(0f,0.3f,0f);
+            tutorialText.SetActive(true);
 
         } else {//disable
 			
@@ -37,6 +39,7 @@ public class SwitchTrigger : MonoBehaviour {
     void OnTriggerExit2D (Collider2D other) {
         if (gameObject.GetComponent<ColoredPlatform>().ObjectEnabled) {//enable
            	transform.position+=new Vector3(0f,-0.3f,0f);
+            tutorialText.SetActive(false);
 
         } else {//disable
 			

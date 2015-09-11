@@ -15,7 +15,7 @@ public class Door : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if(gameObject.GetComponent<ColoredPlatform>().ObjectEnabled)
 		{//enable
-			print("enter door");
+			//print("enter door");
 			other.transform.position=doorOut.position;
 
 		}else{//disable

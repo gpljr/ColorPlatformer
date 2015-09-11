@@ -4,12 +4,14 @@ using System.Linq;
 
 public class MoodManager : MonoBehaviour {
 
-    private Collider2D[] angryColliders, happyColliders, regretfulColliders;
+    private Collider2D[] angryColliders, happyColliders, regretfulColliders, purpleColliders;
 
     public enum Mood {
         Angry,
         Happy,
-        Regretful}
+        Regretful,
+        Purple
+    }
 
     ;
     // [SerializeField] Color colorForAngry=new Color(0.8f, 0.3f, 0.2f);
@@ -37,7 +39,7 @@ public class MoodManager : MonoBehaviour {
         angryColliders = coloredPlatforms.Where((p) => p.mood == Mood.Angry).SelectMany((p) => p.GetComponentsInChildren<Collider2D>()).ToArray();
         happyColliders = coloredPlatforms.Where((p) => p.mood == Mood.Happy).SelectMany((p) => p.GetComponentsInChildren<Collider2D>()).ToArray();
         regretfulColliders = coloredPlatforms.Where((p) => p.mood == Mood.Regretful).SelectMany((p) => p.GetComponentsInChildren<Collider2D>()).ToArray();
-
+        purpleColliders = coloredPlatforms.Where((p) => p.mood == Mood.Purple).SelectMany((p) => p.GetComponentsInChildren<Collider2D>()).ToArray();
         UpdateColoredPlatforms();
 
         foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
@@ -77,6 +79,15 @@ public class MoodManager : MonoBehaviour {
                 c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=true;
             }
         }
+        foreach (Collider2D c in purpleColliders) {
+            if (mood == Mood.Purple) {
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=false;
+            }
+            else{
+                c.gameObject.GetComponent<ColoredPlatform>().ObjectEnabled=true;
+            }
+        }
+
     }
 
     // private void UpdateColliders () {
@@ -127,6 +138,8 @@ public class MoodManager : MonoBehaviour {
                 return new Color(0.2f, 0.8f, 0.2f);
             case Mood.Regretful:
                 return new Color(0.2f, 0.2f, 0.8f);
+            case Mood.Purple:
+                return new Color(0.9f, 0.5f, 0.9f);
 			
             default:
                 return new Color(1f, 0f, 1f);

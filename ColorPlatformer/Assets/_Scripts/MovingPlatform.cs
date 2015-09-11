@@ -30,8 +30,8 @@ public class MovingPlatform : MonoBehaviour {
 		if (GetComponent<ColoredPlatform> () != null) {
 			var moodColor = MoodManager.GetColorForMood (GetComponent<ColoredPlatform> ().mood);
 			lineColor = new Color (moodColor.r, moodColor.g, moodColor.b, 0.75f);
-			Debug.Log (moodColor);
-			Debug.Log (lineColor);
+			//Debug.Log (moodColor);
+			//Debug.Log (lineColor);
 		} else {
 			lineColor = new Color(0.5f, 0f, 0f);
 		}
